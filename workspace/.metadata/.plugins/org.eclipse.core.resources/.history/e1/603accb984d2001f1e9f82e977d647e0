@@ -1,0 +1,103 @@
+package com.cathaybk.demo.controller;
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.cathaybk.demo.model.Currency;
+import com.cathaybk.demo.service.CurrencyService;
+
+
+@SpringBootTest
+@AutoConfigureMockMvc
+public class CurrencyControllerTest {
+	
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@MockBean
+    private CurrencyService currencyService;
+	
+
+	@Test
+	public void testGetAllCurrencies() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders
+				.get("/currencies/list");
+		
+		mockMvc.perform(requestBuilder)
+		.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+
+	@Test
+	public void testGetCurrenciesById() throws Exception {
+	    
+	    Long id = 1L;
+	    Currency currency = new Currency();
+	    currency.setId(id);
+
+	    when(currencyService.getCurrenciesById(id)).thenReturn(Optional.of(currency));
+
+//	    RequestBuilder requestBuilder = MockMvcRequestBuilders
+//				.get("/currencies/data/1");
+	    
+	    mockMvc.perform(get("/currencies/data/1"))
+        .andExpect(MockMvcResultMatchers.status().isOk());
+	    
+	    verify(currencyService, times(1)).getCurrenciesById(id);
+	}
+
+	@Test
+	void testCreateCurrency() throws Exception {
+		
+		LocalDateTime now = LocalDateTime.now();
+		
+		Currency newCurrency = new Currency(1L, "EUR", "NULL", "123.124", "&euro;", "Euro", "123.1235", now, now);
+
+        // mock service method
+        when(currencyService.createCurrency(newCurrency)).thenReturn(newCurrency);
+
+        // perform POST request to create currency
+        mockMvc.perform(post("/currencies/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"code\": \"EUR\", \"description\": \"Euro\", \"name\": \"歐元\"}"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.code").value("EUR"))
+                .andExpect(jsonPath("$.description").value("Euro"))
+                .andExpect(jsonPath("$.name").value("歐元"));
+
+        // verify that the service method was called
+        verify(currencyService).createCurrency(newCurrency);
+		
+	}
+
+//	@Test
+//	void testUpdateCurrency() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testDeleteCurrency() {
+//		fail("Not yet implemented");
+//	}
+	
+
+}

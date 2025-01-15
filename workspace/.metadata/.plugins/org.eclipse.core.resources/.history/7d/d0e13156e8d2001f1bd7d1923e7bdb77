@@ -1,0 +1,69 @@
+package com.cathaybk.demo.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.cathaybk.demo.model.Currency;
+import com.cathaybk.demo.model.CurrencyRepository;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+class CurrencyServiceTest {
+	
+	@MockBean
+    private CurrencyRepository currencyRepository;
+	
+	@Autowired
+    private CurrencyService currencyService;
+	
+	@Test
+	public void testGetAllCurrencies() {
+		List<Currency> list = currencyRepository.findAll();
+		list.forEach(vo->System.out.println(vo.getCode()));
+    }
+
+	@Test
+	public void testGetCurrenciesById() {
+		
+		Long id = 1L;
+        Currency currency = new Currency();
+        currency.setId(id);
+
+//        when(currencyRepository.findById(id)).thenReturn(Optional.of(currency));
+
+        Optional<Currency> optionalCurrency = currencyRepository.findById(id);
+
+        assertThat(optionalCurrency).isPresent();
+        Currency currencyData = optionalCurrency.get();
+        
+//        assertNotNull(currencyData);
+        assertEquals("USD", currencyData.getCode());
+        assertEquals("US Dollar", currencyData.getDescription());
+		
+		
+	}
+
+//	@Test
+//	public void testCreateCurrency() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testDeleteCurrencyById() {
+//		fail("Not yet implemented");
+//	}
+
+}

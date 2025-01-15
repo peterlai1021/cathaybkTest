@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CoinDeskControllerTest" project="demo" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.cathaybk.demo.controller.CoinDeskControllerTest" time="0.98" displayname="CoinDeskControllerTest" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CoinDeskControllerTest]">
+    <testcase name="testGetCoinDeskInfo" classname="com.cathaybk.demo.controller.CoinDeskControllerTest" time="0.632" displayname="testGetCoinDeskInfo()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CoinDeskControllerTest]/[method:testGetCoinDeskInfo()]"/>
+    <testcase name="testGetCoinDeskJson" classname="com.cathaybk.demo.controller.CoinDeskControllerTest" time="0.347" displayname="testGetCoinDeskJson()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CoinDeskControllerTest]/[method:testGetCoinDeskJson()]"/>
+  </testsuite>
+</testrun>

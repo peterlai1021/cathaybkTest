@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CoinDeskServiceTest" project="demo" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.cathaybk.demo.service.CoinDeskServiceTest" time="0.578" displayname="CoinDeskServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.service.CoinDeskServiceTest]">
+    <testcase name="testGetCoinDeskData" classname="com.cathaybk.demo.service.CoinDeskServiceTest" time="0.578" displayname="testGetCoinDeskData()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.service.CoinDeskServiceTest]/[method:testGetCoinDeskData()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,34 @@
+package com.cathaybk.demo.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.cathaybk.demo.model.CurrencyRepository;
+
+class CurrencyServiceTest {
+	
+	@MockBean
+    private CurrencyRepository currencyRepository;
+	
+	@Autowired
+    private CurrencyService currencyService;
+
+	@Test
+	public void testGetCurrenciesById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCreateCurrency() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDeleteCurrencyById() {
+		fail("Not yet implemented");
+	}
+
+}

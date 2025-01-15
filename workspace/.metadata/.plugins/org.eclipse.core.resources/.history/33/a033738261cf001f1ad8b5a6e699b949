@@ -1,0 +1,13 @@
+package com.cathaybk.demo;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cathaybk.demo.model.Currency;
+
+public interface CurrencyRepository extends JpaRepository<Currency, Long> {
+	
+	Optional<Currency> findByCurrencyCodeAndCurrencyName(String currencyCode, String currencyName);
+	
+}

@@ -1,0 +1,20 @@
+package com.cathaybk.demo.model;
+
+
+import javax.persistence.Entity;
+
+
+import lombok.Data;
+
+@Entity
+@Data
+public class Currency {
+
+
+    private String currencyCode;  // 幣別代碼
+    private String currencyName;  // 幣別中文名稱
+    private String currencyRate;  // 匯率
+
+   
+
+}

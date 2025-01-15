@@ -1,0 +1,60 @@
+package com.cathaybk.demo.controller;
+
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.cathaybk.demo.model.CoinDeskResponse;
+import com.cathaybk.demo.model.CoinDeskResponse.Bpi;
+import com.cathaybk.demo.model.CoinDeskResponse.CoinDeskTime;
+import com.cathaybk.demo.service.CoinDeskService;
+
+class CoinDeskControllerTest {
+	
+	@Autowired
+    private MockMvc mockMvc;
+
+    @Mock
+    private CoinDeskService coinDeskService;
+
+    @InjectMocks
+    private CoinDeskController coinDeskController;
+
+	@Test
+	void testGetCoinDeskInfo() {
+		
+		CoinDeskResponse coinDeskResponse = new CoinDeskResponse();
+        coinDeskResponse.setTime(new CoinDeskTime("2025-01-13T10:00:00Z"));
+        coinDeskResponse.setBpi(new Bpi("USD", "&#36;", "97895.687", "United States Dollar", (float)97895.687));
+		when(coinDeskService.getCoinDeskData()).thenReturn(coinDeskResponse);
+
+        // 執行 GET 請求並檢查回應
+        mockMvc.perform(get("/api/coinDeskNew"))
+            .andExpect(status().isOk())  // 檢查回應狀態為 200 OK
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))  // 檢查回應類型為 JSON
+            .andExpect(jsonPath("$.time").value("2025-01-13T10:00:00Z"))  // 檢查時間是否正確
+            .andExpect(jsonPath("$.currencyInfoList[0].code").value("USD"))  // 檢查貨幣資訊是否正確
+            .andExpect(jsonPath("$.currencyInfoList[0].name").value("美金"));  // 檢查貨幣名稱是否正確
+		
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetCoinDeskJson() {
+		fail("Not yet implemented");
+	}
+
+}

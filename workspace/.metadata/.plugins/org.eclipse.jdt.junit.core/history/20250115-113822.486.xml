@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CurrencyControllerTest" project="demo" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="com.cathaybk.demo.controller.CurrencyControllerTest" time="0.139" displayname="CurrencyControllerTest" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CurrencyControllerTest]">
+    <testcase name="testDeleteCurrencySuccess" classname="com.cathaybk.demo.controller.CurrencyControllerTest" time="0.074" displayname="testDeleteCurrencySuccess()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CurrencyControllerTest]/[method:testDeleteCurrencySuccess()]"/>
+    <testcase name="testUpdateCurrency" classname="com.cathaybk.demo.controller.CurrencyControllerTest" time="0.049" displayname="testUpdateCurrency()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CurrencyControllerTest]/[method:testUpdateCurrency()]"/>
+    <testcase name="testCreateCurrency" classname="com.cathaybk.demo.controller.CurrencyControllerTest" time="0.004" displayname="testCreateCurrency()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CurrencyControllerTest]/[method:testCreateCurrency()]"/>
+    <testcase name="testDeleteCurrencyNotFound" classname="com.cathaybk.demo.controller.CurrencyControllerTest" time="0.004" displayname="testDeleteCurrencyNotFound()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CurrencyControllerTest]/[method:testDeleteCurrencyNotFound()]"/>
+    <testcase name="testGetCurrenciesById" classname="com.cathaybk.demo.controller.CurrencyControllerTest" time="0.005" displayname="testGetCurrenciesById()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.controller.CurrencyControllerTest]/[method:testGetCurrenciesById()]"/>
+  </testsuite>
+</testrun>

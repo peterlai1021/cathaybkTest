@@ -1,0 +1,45 @@
+package com.cathaybk.demo.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.cathaybk.demo.model.Currency;
+import com.cathaybk.demo.model.CurrencyRepository;
+
+class CurrencyServiceTest {
+	
+	@MockBean
+    private CurrencyRepository currencyRepository;
+	
+	@Autowired
+    private CurrencyService currencyService;
+
+	@Test
+	public void testGetCurrenciesById() {
+		
+		Optional<Currency> optionalCurrency = currencyRepository.findById(1L);
+		
+		Currency currency = optionalCurrency.get();
+		
+		assertNotNull(optionalCurrency);
+		assertEquals("USD", currency.getCode());
+		assertEquals("US Dollar", currency.getDescription());
+		
+	}
+
+	@Test
+	public void testCreateCurrency() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDeleteCurrencyById() {
+		fail("Not yet implemented");
+	}
+
+}

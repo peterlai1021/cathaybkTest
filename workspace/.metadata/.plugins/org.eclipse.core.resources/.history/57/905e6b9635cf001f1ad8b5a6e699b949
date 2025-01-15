@@ -1,0 +1,5 @@
+package com.cathaybk.demo.controller.copy;
+
+public class CurrencyController {
+
+}

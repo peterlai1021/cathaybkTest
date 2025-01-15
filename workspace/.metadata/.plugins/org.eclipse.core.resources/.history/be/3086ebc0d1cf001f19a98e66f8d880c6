@@ -1,0 +1,20 @@
+package com.cathaybk.demo.model;
+
+
+import javax.persistence.Entity;
+
+
+@Entity
+public class Currency {
+
+
+    private String Code;  // 幣別代碼
+    private String Name;  // 幣別中文名稱
+    private String Rate;  // 匯率
+    private String symbol;  // 圖示
+    private String description;  // 說明
+    private String rate_float;  // 匯率
+
+   
+
+}

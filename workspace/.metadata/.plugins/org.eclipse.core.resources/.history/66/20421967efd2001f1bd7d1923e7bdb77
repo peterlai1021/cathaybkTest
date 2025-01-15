@@ -1,0 +1,10 @@
+package com.cathaybk.demo.model;
+
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+@DataJpaTest
+class CurrencyRepositoryTest {
+
+	
+
+}

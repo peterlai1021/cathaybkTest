@@ -1,0 +1,64 @@
+package com.cathaybk.demo.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+
+import javax.transaction.Transactional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.RestTemplate;
+
+import com.cathaybk.demo.model.CoinDeskResponse;
+
+@SpringBootTest
+class CoinDeskServiceTest {
+	
+	@Mock
+    private RestTemplate restTemplate;
+
+    @InjectMocks
+    private CoinDeskService coinDeskService;
+
+    private MockRestServiceServer mockServer;
+
+    @BeforeEach
+    void setUp() {
+        // 初始化 MockRestServiceServer
+        mockServer = MockRestServiceServer.createServer(restTemplate);
+    }
+
+	@Test
+    void testGetCoinDeskData() {
+        // 模擬 API 回應
+        String jsonResponse = "{"
+                + "\"time\": {\"updated\": \"2025-01-13T10:00:00Z\"},"
+                + "\"bpi\": {"
+                + "\"USD\": {\"code\": \"USD\", \"symbol\": \"&#36;\", \"rate\": \"97895.687\", \"description\": \"United States Dollar\", \"rate_float\": 97895.687}"
+                + "}}";
+
+        mockServer.expect(requestTo("https://api.coindesk.com/v1/bpi/currentprice.json"))
+                  .andRespond(withSuccess(jsonResponse, org.springframework.http.MediaType.APPLICATION_JSON));
+
+        CoinDeskResponse response = coinDeskService.getCoinDeskData();
+
+        assertNotNull(response);
+        assertEquals("2025-01-13T10:00:00Z", response.getTime().getUpdated());
+        assertNotNull(response.getBpi());
+        assertEquals("USD", response.getBpi().get("USD").getCode());
+        assertEquals("97895.687", response.getBpi().get("USD").getRate());
+    }
+
+//	@Test
+//	void testGetCoinDeskJson() {
+//		fail("Not yet implemented");
+//	}
+
+}

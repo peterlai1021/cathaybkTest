@@ -1,0 +1,86 @@
+package com.cathaybk.demo.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.apache.commons.text.StringEscapeUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.cathaybk.demo.model.Currency;
+import com.cathaybk.demo.model.CurrencyRepository;
+
+@SpringBootTest
+@Transactional
+class CurrencyServiceTest {
+	
+	@Mock
+    private CurrencyRepository currencyRepository;
+	
+	@InjectMocks
+    private CurrencyService currencyService;
+	
+	private Currency currency;
+	
+	@BeforeEach
+    void setUp() {
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		currency = new Currency(1L, "USD","美金","1.00","$","US Dollar","1.0",LocalDateTime.parse("2025-01-13 10:00:00", formatter),LocalDateTime.parse("2025-01-13 10:02:00", formatter));
+    }
+
+	@Test
+	public void testGetCurrenciesById() {
+		
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//		
+//		Currency currency = new Currency(1L, "USD","美金","1.00","$","US Dollar","1.0",LocalDateTime.parse("2025-01-13 10:00:00", formatter),LocalDateTime.parse("2025-01-13 10:02:00", formatter));
+		
+		Long id = 1L;
+
+        when(currencyRepository.findById(id)).thenReturn(Optional.of(currency));
+
+        Optional<Currency> optionalCurrency = currencyRepository.findById(id);
+
+        Currency currencyData = optionalCurrency.get();
+        
+        assertNotNull(currencyData);
+        assertEquals("USD", currencyData.getCode());
+        assertEquals("US Dollar", currencyData.getDescription());
+		
+		
+	}
+
+//	@Test
+//	public void testCreateCurrency() {
+//		
+//		Currency currency = new Currency(1L, "USD","美金","1.00","$","US Dollar","1.0",LocalDateTime.parse("2025-01-13 10:00:00", formatter),LocalDateTime.parse("2025-01-13 10:02:00", formatter));
+//		
+//		when(currencyRepository.save(currency)).thenReturn(currency);
+//		
+//		String htmlString = currency.getSymbol();
+//    	String convertedString = StringEscapeUtils.unescapeHtml4(htmlString);
+//    	
+//    	currency.setSymbol(convertedString);
+//		
+//        return currencyRepository.save(currency);
+//		
+//	}
+//
+//	@Test
+//	public void testDeleteCurrencyById() {
+//		fail("Not yet implemented");
+//	}
+
+}

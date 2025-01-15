@@ -1,0 +1,5 @@
+package com.cathaybk.demo.service;
+
+public class CurrencyService {
+
+}

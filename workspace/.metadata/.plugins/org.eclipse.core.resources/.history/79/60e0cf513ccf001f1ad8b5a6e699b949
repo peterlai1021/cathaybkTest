@@ -1,0 +1,31 @@
+package com.cathaybk.demo.controller;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cathaybk.demo.model.CoinDeskResponse;
+
+import service.CoinDeskService;
+
+@RestController
+public class CoinDeskController {
+
+    @Autowired
+    private CoinDeskService coinDeskService;
+
+    @GetMapping("/api/coinDesk")
+    public CoinDeskResponse getCoinDeskInfo() {
+        CoinDeskResponse response = coinDeskService.getCoinDeskData();
+        CoinDeskResponse.CoinDeskTime time = response.getTime();
+        
+        // 格式化時間
+        String formattedTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+        
+        // 回傳轉換過的資料
+        return new CoinDeskResponse(formattedTime, response.getBpi());
+    }
+}

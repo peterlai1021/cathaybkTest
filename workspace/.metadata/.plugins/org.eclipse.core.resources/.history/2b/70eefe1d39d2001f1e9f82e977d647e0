@@ -1,0 +1,107 @@
+package com.cathaybk.demo.model;
+
+import java.util.Map;
+
+import javax.persistence.Entity;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+//public class CoinDeskResponse {
+//
+//    @JsonProperty("time")
+//    private CoinDeskTime time;
+//
+//    @JsonProperty("bpi")
+//    private CoinDeskBpi bpi;
+//
+//
+//    public static class CoinDeskTime {
+//        @JsonProperty("updated")
+//        private String updated;
+//
+//    }
+//
+//    public static class CoinDeskBpi {
+//        private CoinDeskCurrency usd;
+//        private CoinDeskCurrency gbp;
+//        private CoinDeskCurrency eur;
+//
+//    }
+//
+//    public static class CoinDeskCurrency {
+//        private String code;
+//        private String symbol;
+//        private String rate;
+//        private String description;
+//
+//    }
+//}
+
+public class CoinDeskResponse {
+    private CoinDeskTime time;
+    private Map<String, Bpi> bpi;
+
+    // Constructor, Getters 和 Setters
+
+    public CoinDeskResponse(CoinDeskTime time, Map<String, Bpi> bpi) {
+        this.time = time;
+        this.bpi = bpi;
+    }
+
+    public CoinDeskTime getTime() {
+        return time;
+    }
+
+    public void setTime(CoinDeskTime time) {
+        this.time = time;
+    }
+
+    public Map<String, Bpi> getBpi() {
+        return bpi;
+    }
+
+    public void setBpi(Map<String, Bpi> bpi) {
+        this.bpi = bpi;
+    }
+
+    // CoinDeskTime 類別 (內部類別，處理時間)
+    public static class CoinDeskTime {
+        private String updated;
+        
+        // Constructor 和 Getter
+        public CoinDeskTime(String updated) {
+            this.updated = updated;
+        }
+
+        public String getUpdated() {
+            return updated;
+        }
+
+        public void setUpdated(String updated) {
+            this.updated = updated;
+        }
+    }
+
+    // Bpi 類別
+    public static class Bpi {
+        private String code;
+        private String symbol;
+        private String rate;
+        private String description;
+        private float rate_float;
+
+        public Bpi(String code, String symbol, String rate, String description, float rate_float) {
+            this.code = code;
+            this.symbol = symbol;
+            this.rate = rate;
+            this.description = description;
+            this.rate_float = rate_float;
+        }
+
+    }
+}
+

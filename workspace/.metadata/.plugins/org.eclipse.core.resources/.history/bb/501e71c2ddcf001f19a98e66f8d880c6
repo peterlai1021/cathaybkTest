@@ -1,0 +1,21 @@
+package com.cathaybk.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cathaybk.demo.model.CurrencyRepository;
+
+@Service
+public class CurrencyService {
+
+	@Autowired
+    private CurrencyRepository currencyRepository;
+	
+	public void deleteUserById(Long id) {
+        if (!currencyRepository.existsById(id)) {
+            throw new RuntimeException("User with id " + id + " not found");
+        }
+        currencyRepository.deleteById(id);
+    }
+	
+}

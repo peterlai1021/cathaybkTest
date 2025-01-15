@@ -1,0 +1,43 @@
+package com.cathaybk.demo.service;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.cathaybk.demo.model.CoinDeskResponse;
+
+@Service
+public class CoinDeskService {
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    
+    public CoinDeskResponse getCoinDeskData() {
+        String url = "https://api.coindesk.com/v1/bpi/currentprice.json";
+        return restTemplate.getForObject(url, CoinDeskResponse.class);
+    }
+    
+    public String getCoinDeskJson() {
+        String url = "https://api.coindesk.com/v1/bpi/currentprice.json";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        return response.getBody();
+    }
+    
+    // 時間格式化
+    public String formatTime(String updated) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss z", Locale.ENGLISH);
+            Date date = inputFormat.parse(updated);
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            return outputFormat.format(date);
+        } catch (Exception e) {
+        	e.printStackTrace();
+            return "Invalid Time";
+        }
+    }
+    
+}
+

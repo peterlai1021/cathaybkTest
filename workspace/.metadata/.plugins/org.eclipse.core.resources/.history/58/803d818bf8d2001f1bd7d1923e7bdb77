@@ -1,0 +1,43 @@
+package com.cathaybk.demo.controller;
+
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.cathaybk.demo.service.CoinDeskService;
+
+class CoinDeskControllerTest {
+	
+	@Autowired
+    private MockMvc mockMvc;
+
+    @Mock
+    private CoinDeskService coinDeskService;  // 模擬 service
+
+    @InjectMocks
+    private CoinDeskController coinDeskController;  // 控制器
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);  // 初始化 mock 對象
+        mockMvc = MockMvcBuilders.standaloneSetup(coinDeskController).build();
+    }
+    
+	@Test
+	void testGetCoinDeskInfo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetCoinDeskJson() {
+		fail("Not yet implemented");
+	}
+
+}

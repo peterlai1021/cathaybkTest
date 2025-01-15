@@ -1,0 +1,8 @@
+package com.cathaybk.demo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cathaybk.demo.model.Currency;
+
+public interface CurrencyRepository extends JpaRepository<Currency, Long> {
+}

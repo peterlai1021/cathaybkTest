@@ -1,0 +1,29 @@
+package com.cathaybk.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cathaybk.demo.model.Currency;
+import com.cathaybk.demo.model.CurrencyRepository;
+
+@Service
+public class CurrencyService {
+
+	@Autowired
+    private CurrencyRepository currencyRepository;
+	
+	public List<Currency> getAllCurrencies() {
+        return currencyRepository.findAll();
+    }
+	
+	
+	public void deleteUserById(Long id) {
+        if (!currencyRepository.existsById(id)) {
+            throw new RuntimeException("User with id " + id + " not found");
+        }
+        currencyRepository.deleteById(id);
+    }
+	
+}

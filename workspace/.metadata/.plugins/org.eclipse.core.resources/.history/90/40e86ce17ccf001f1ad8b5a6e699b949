@@ -1,0 +1,50 @@
+package com.cathaybk.demo.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cathaybk.demo.CurrencyRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Service
+public class CoindeskTransformService {
+
+    @Autowired
+    private CurrencyRepository currencyRepository;
+
+    @Autowired
+    private CoinDeskService coindeskService;
+
+    public Object transformData() throws Exception {
+        String coindeskData = coindeskService.getCoinDeskData();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode rootNode = mapper.readTree(coindeskData);
+
+        String updatedTime = rootNode.get("time").get("updated").asText();
+
+        List<Object> currencies = new ArrayList<>();
+        JsonNode bpiNode = rootNode.get("bpi");
+        bpiNode.fields().forEachRemaining(entry -> {
+            String code = entry.getKey();
+            JsonNode data = entry.getValue();
+            currencyRepository.findAll().forEach(currency -> {
+                if (currency.getCurrencyCode().equals(code)) {
+                    currencies.add(new Object() {
+                        public String currencyCode = code;
+                        public String currencyName = currency.getCurrencyName();
+                        public String rate = data.get("rate").asText();
+                    });
+                }
+            });
+        });
+
+        return new Object() {
+            public String updatedTime = updatedTime;
+            public List<Object> currencies = currencies;
+        };
+    }
+}

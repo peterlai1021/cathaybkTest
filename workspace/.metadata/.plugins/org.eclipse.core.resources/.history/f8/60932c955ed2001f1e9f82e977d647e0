@@ -1,0 +1,29 @@
+package com.cathaybk.demo.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class CurrencyServiceTest {
+
+//	@Test
+//	void testGetAllCurrencies() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testGetCurrenciesById() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testCreateCurrency() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testDeleteCurrencyById() {
+//		fail("Not yet implemented");
+//	}
+
+}

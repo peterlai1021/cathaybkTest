@@ -1,0 +1,28 @@
+package com.cathaybk.demo.service;
+
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest(classes = CurrencyService.class)
+class CurrencyServiceTest {
+
+//	@Test
+//	void testGetAllCurrencies() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testGetCurrenciesById() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testCreateCurrency() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testDeleteCurrencyById() {
+//		fail("Not yet implemented");
+//	}
+
+}

@@ -1,0 +1,21 @@
+package form;
+
+public class CurrencyForm {
+
+	private String id;
+	
+    private String code;  // 幣別代碼
+    
+    private String name;  // 幣別中文名稱
+    
+    private String rate;  // 匯率
+    
+    private String symbol;  // 圖示
+    
+    private String description;  // 說明
+    
+    private String rateFloat;  // 匯率浮點
+    
+    private String updateDate;  // 更新時間
+	
+}

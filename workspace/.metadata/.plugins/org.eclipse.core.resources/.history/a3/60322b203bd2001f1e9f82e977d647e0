@@ -1,0 +1,25 @@
+package com.cathaybk.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.cathaybk.demo.model.Currency;
+import com.cathaybk.demo.model.CurrencyRepository;
+
+@Component
+public class DataInitializer implements CommandLineRunner {
+
+    private final CurrencyRepository currencyRepository;
+
+    public DataInitializer(CurrencyRepository currencyRepository) {
+        this.currencyRepository = currencyRepository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        currencyRepository.save(new Currency("USD", "美元"));
+        currencyRepository.save(new Currency("EUR", "歐元"));
+        currencyRepository.save(new Currency("GBP", "英鎊"));
+        System.out.println("資料初始化完成！");
+    }
+}

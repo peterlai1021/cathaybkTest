@@ -1,0 +1,18 @@
+package com.cathaybk.demo.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.cathaybk.demo.model.CoinDeskResponse;
+
+@Service
+public class CoinDeskService {
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    
+    public CoinDeskResponse getCoinDeskData() {
+        String url = "https://api.coindesk.com/v1/bpi/currentprice.json";
+        return restTemplate.getForObject(url, CoinDeskResponse.class);
+    }
+}
+

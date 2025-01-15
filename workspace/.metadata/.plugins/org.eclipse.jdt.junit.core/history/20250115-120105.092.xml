@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CurrencyServiceTest" project="demo" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="com.cathaybk.demo.service.CurrencyServiceTest" time="0.048" displayname="CurrencyServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.service.CurrencyServiceTest]">
+    <testcase name="testDeleteCurrencyByIdWhenCurrencyExists" classname="com.cathaybk.demo.service.CurrencyServiceTest" time="0.019" displayname="testDeleteCurrencyByIdWhenCurrencyExists()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.service.CurrencyServiceTest]/[method:testDeleteCurrencyByIdWhenCurrencyExists()]"/>
+    <testcase name="testCreateCurrency" classname="com.cathaybk.demo.service.CurrencyServiceTest" time="0.018" displayname="testCreateCurrency()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.service.CurrencyServiceTest]/[method:testCreateCurrency()]"/>
+    <testcase name="testGetCurrenciesById" classname="com.cathaybk.demo.service.CurrencyServiceTest" time="0.004" displayname="testGetCurrenciesById()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.service.CurrencyServiceTest]/[method:testGetCurrenciesById()]"/>
+    <testcase name="testDeleteCurrencyByIdWhenCurrencyDoesNotExist" classname="com.cathaybk.demo.service.CurrencyServiceTest" time="0.004" displayname="testDeleteCurrencyByIdWhenCurrencyDoesNotExist()" uniqueid="[engine:junit-jupiter]/[class:com.cathaybk.demo.service.CurrencyServiceTest]/[method:testDeleteCurrencyByIdWhenCurrencyDoesNotExist()]"/>
+  </testsuite>
+</testrun>

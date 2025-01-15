@@ -1,0 +1,60 @@
+package com.cathaybk.demo.service;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.cathaybk.demo.model.Currency;
+import com.cathaybk.demo.model.CurrencyRepository;
+
+@DataJpaTest
+class CurrencyServiceTest {
+	
+	@Autowired
+    private CurrencyRepository currencyRepository;
+	
+	@Autowired
+    private CurrencyService currencyService;
+	
+	@Test
+	public void testGetAllCurrencies() {
+		List<Currency> list = currencyRepository.findAll();
+		System.out.println("111111111111111111111111111111");
+		System.out.println("2222222222222222" + list.get(0).getCode());
+    }
+
+//	@Test
+//	public void testGetCurrenciesById() {
+//		
+//		Long id = 1L;
+//        Currency currency = new Currency();
+//        currency.setId(id);
+//
+////        when(currencyRepository.findById(id)).thenReturn(Optional.of(currency));
+//
+//        Optional<Currency> optionalCurrency = currencyRepository.findById(id);
+//
+//        assertThat(optionalCurrency).isPresent();
+//        Currency currencyData = optionalCurrency.get();
+//        
+////        assertNotNull(currencyData);
+//        assertEquals("USD", currencyData.getCode());
+//        assertEquals("US Dollar", currencyData.getDescription());
+//		
+//		
+//	}
+
+//	@Test
+//	public void testCreateCurrency() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testDeleteCurrencyById() {
+//		fail("Not yet implemented");
+//	}
+
+}

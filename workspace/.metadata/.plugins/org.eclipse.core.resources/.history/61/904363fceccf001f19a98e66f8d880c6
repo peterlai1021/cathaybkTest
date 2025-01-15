@@ -1,0 +1,21 @@
+package com.cathaybk.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cathaybk.demo.service.CoindeskTransformService;
+
+@RestController
+@RequestMapping("/coindesk/transform")
+public class CoindeskTransformController {
+
+    @Autowired
+    private CoindeskTransformService transformService;
+
+    @GetMapping
+    public Object transformData() throws Exception {
+        return transformService.transformData();
+    }
+}
